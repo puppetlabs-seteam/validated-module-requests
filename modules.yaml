@@ -28,3 +28,4 @@ requested_modules:
   - puppet-nftables                                                                                                                                                
   - puppet-ca_cert                                                                                                         
   - puppet-kmod 
+  - souldo-ie_esc
