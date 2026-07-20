@@ -29,3 +29,4 @@ requested_modules:
   - puppet-ca_cert                                                                                                         
   - puppet-kmod 
   - souldo-ie_esc
+  - souldo-pe_winagent
