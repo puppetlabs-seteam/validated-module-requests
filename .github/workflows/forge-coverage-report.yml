@@ -1,0 +1,84 @@
+# .github/workflows/forge-coverage-report.yml                                                                                                                      
+  name: Forge Validated Coverage Report                                                                                                                              
+                                                                                                                                                                     
+  on:                                                                                                                                                                
+    schedule:                                                                                                                                                      
+      - cron: '0 14 * * 1'  # Every Monday 8am CST / 9am CDT
+    workflow_dispatch:       # Allow manual runs                                                                                                                     
+   
+  jobs:                                                                                                                                                              
+    generate-report:                                                                                                                                               
+      runs-on: ubuntu-latest
+      permissions:
+        contents: write                                                                                                                                              
+   
+      steps:                                                                                                                                                         
+        - name: Checkout                                                                                                                                           
+          uses: actions/checkout@v4
+
+        - name: Generate coverage report
+          run: |
+            python3 << 'EOF'
+            import json, urllib.request, yaml, datetime                                                                                                              
+                                                                                                                                                                     
+            with open('modules.yaml') as f:                                                                                                                          
+                requested = yaml.safe_load(f)['requested_modules']                                                                                                   
+                                                                                                                                                                   
+            url = 'https://forgeapi.puppet.com/v3/modules?endorsements=validated&limit=100&fields=slug,endorsement,downloads,current_release'                        
+            with urllib.request.urlopen(url) as r:
+                validated = {m['slug'] for m in json.load(r)['results']}                                                                                             
+                                                                                                                                                                     
+            covered, missing = [], []                                                                                                                                
+            for mod in requested:                                                                                                                                    
+                if mod in validated:                                                                                                                               
+                    covered.append(mod)
+                else:
+                    missing.append(mod)
+                                                                                                                                                                     
+            today = datetime.date.today().isoformat()
+            lines = [                                                                                                                                                
+                f'# Forge Validated Coverage Report — {today}',                                                                                                    
+                '',
+                f'**{len(covered)}/{len(requested)} modules covered**',
+                '',                                                                                                                                                  
+                '## Covered',
+                '',                                                                                                                                                  
+                '| Module | Version | Downloads |',                                                                                                                
+                '|--------|---------|-----------|',
+            ]
+                                                                                                                                                                     
+            url2 = 'https://forgeapi.puppet.com/v3/modules?endorsements=validated&limit=100&fields=slug,downloads,current_release'                                   
+            with urllib.request.urlopen(url2) as r:                                                                                                                  
+                details = {m['slug']: m for m in json.load(r)['results']}                                                                                            
+                                                                                                                                                                   
+            for mod in sorted(covered):                                                                                                                              
+                d = details.get(mod, {})
+                version = d.get('current_release', {}).get('version', 'N/A') if d.get('current_release') else 'N/A'                                                  
+                downloads = f"{d.get('downloads', 0):,}"                                                                                                             
+                lines.append(f'| {mod} | {version} | {downloads} |')
+                                                                                                                                                                     
+            lines += [                                                                                                                                             
+                '',                                                                                                                                                  
+                '## Not Validated',                                                                                                                                
+                '',
+                '| Module | Notes |',
+                '|--------|-------|',
+            ]
+            for mod in sorted(missing):                                                                                                                              
+                lines.append(f'| {mod} | Not yet validated |')
+                                                                                                                                                                     
+            import os                                                                                                                                              
+            os.makedirs('reports', exist_ok=True)
+            with open('reports/forge-validated-coverage.md', 'w') as f:
+                f.write('\n'.join(lines) + '\n')                                                                                                                     
+   
+            print(f"Report written: {len(covered)}/{len(requested)} covered")                                                                                        
+            EOF                                                                                                                                                    
+                                                                                                                                                                     
+        - name: Commit and push                                                                                                                                    
+          run: |
+            git config user.name "github-actions[bot]"
+            git config user.email "github-actions[bot]@users.noreply.github.com"                                                                                     
+            git add reports/forge-validated-coverage.md
+            git diff --staged --quiet || git commit -m "chore: weekly forge validated coverage report $(date +%Y-%m-%d)"                                             
+            git push
