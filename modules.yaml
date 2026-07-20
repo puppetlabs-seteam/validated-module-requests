@@ -30,3 +30,4 @@ requested_modules:
   - puppet-kmod 
   - souldo-ie_esc
   - souldo-pe_winagent
+  - test-module
