@@ -19,7 +19,7 @@ jobs:
       - name: Check org membership                                                                                                                                 
         uses: actions/github-script@v7                                                                                                                           
         with:
-          github-token: ${{ secrets.CROSS_REPO_TOKEN }}
+          github-token: ${{ secrets.ORG_READ_TOKEN }}
           script: |
             try {
               await github.rest.orgs.checkMembershipForUser({                                                                                                      
