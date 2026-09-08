@@ -1,0 +1,19 @@
+name: Check PostgreSQL Dependencies
+
+on:
+  schedule:
+    - cron: '0 14 * * 1'  # Every Monday 8am CST / 9am CDT
+  workflow_dispatch:
+
+jobs:
+  check-postgresql-deps:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v5
+
+      - name: Check for postgresql dependencies
+        run: python3 scripts/check_postgresql_dependencies.py
