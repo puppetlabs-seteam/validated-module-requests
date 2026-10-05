@@ -1,6 +1,6 @@
 # Puppet Forge Validated Module Coverage
 
-_Last updated: 2026-09-28_
+_Last updated: 2026-10-05_
 
 **24/29 requested modules have Validated status.**
 
@@ -8,30 +8,30 @@ _Last updated: 2026-09-28_
 
 | Module | Version | Downloads |
 |--------|---------|-----------|
-| puppet-alternatives | 6.0.0 | 2,133,442 |
-| puppet-archive | 8.1.0 | 93,812,749 |
-| puppet-augeasproviders_core | 5.0.0 | 206,434 |
-| puppet-augeasproviders_sysctl | 4.1.0 | 100,573 |
-| puppet-ca_cert | 4.0.0 | 12,446 |
-| puppet-chrony | 5.0.0 | 570,824 |
-| puppet-cron | 5.0.0 | 2,235,587 |
-| puppet-epel | 6.0.0 | 922,236 |
-| puppet-gitlab | 11.0.0 | 1,176,929 |
-| puppet-gitlab_ci_runner | 7.2.0 | 453,720 |
-| puppet-keepalived | 6.2.0 | 222,838 |
-| puppet-kmod | 5.0.0 | 172,046 |
-| puppet-logrotate | 9.0.0 | 4,067,658 |
-| puppet-nftables | 7.4.0 | 25,345 |
-| puppet-nginx | 8.2.0 | 48,752,859 |
-| puppet-nsswitch | 4.0.0 | 16,294 |
-| puppet-postfix | 6.0.0 | 185,395 |
-| puppet-python | 10.0.0 | 3,392,129 |
-| puppet-selinux | 6.0.0 | 3,446,636 |
-| puppet-squid | 6.0.0 | 490,156 |
-| puppet-systemd | 10.2.0 | 677,361 |
-| puppet-telegraf | 7.2.1 | 380,611 |
-| puppet-unattended_upgrades | 9.1.0 | 1,637,393 |
-| puppet-yum | 8.2.0 | 65,758,452 |
+| puppet-alternatives | 6.0.0 | 2,134,559 |
+| puppet-archive | 8.1.0 | 93,816,646 |
+| puppet-augeasproviders_core | 5.0.0 | 208,316 |
+| puppet-augeasproviders_sysctl | 4.1.0 | 101,969 |
+| puppet-ca_cert | 4.0.0 | 12,619 |
+| puppet-chrony | 5.0.0 | 572,760 |
+| puppet-cron | 5.0.0 | 2,236,630 |
+| puppet-epel | 6.0.0 | 924,165 |
+| puppet-gitlab | 11.0.0 | 1,177,457 |
+| puppet-gitlab_ci_runner | 7.2.0 | 454,174 |
+| puppet-keepalived | 6.2.0 | 223,621 |
+| puppet-kmod | 5.0.0 | 173,616 |
+| puppet-logrotate | 9.0.0 | 4,070,714 |
+| puppet-nftables | 7.4.0 | 25,822 |
+| puppet-nginx | 8.3.1 | 48,756,277 |
+| puppet-nsswitch | 4.0.0 | 16,477 |
+| puppet-postfix | 6.0.0 | 186,520 |
+| puppet-python | 10.0.0 | 3,393,811 |
+| puppet-selinux | 6.0.0 | 3,448,880 |
+| puppet-squid | 6.0.0 | 491,171 |
+| puppet-systemd | 10.2.0 | 683,132 |
+| puppet-telegraf | 7.2.1 | 381,510 |
+| puppet-unattended_upgrades | 9.1.0 | 1,638,670 |
+| puppet-yum | 8.2.0 | 65,760,709 |
 
 ## Not Yet Validated
 
