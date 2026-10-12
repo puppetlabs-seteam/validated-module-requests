@@ -1,1 +1,39 @@
+# macOS
 .DS_Store
+
+# GitHub automation/config
+.github/
+
+# Keep local/staged artifact folders, but ignore their generated contents
+_forge_modules/downloads/*
+!_forge_modules/downloads/.gitkeep
+
+_forge_modules/extracted/*
+!_forge_modules/extracted/.gitkeep
+
+_forge_modules/inventory/*
+!_forge_modules/inventory/.gitkeep
+
+_forge_modules/reports/*
+!_forge_modules/reports/.gitkeep
+
+# Keep local Hiera folder, but ignore customer/config files inside it
+hiera/*
+!hiera/.gitkeep
+
+# Optional hidden Hiera folder variant
+.hiera/*
+!.hiera/.gitkeep
+
+# Python cache artifacts
+__pycache__/
+*.py[cod]
+*.pyo
+
+# PowerShell/editor/temp files
+*.tmp
+*.bak
+*.log
+
+# VS Code local workspace settings
+.vscode/
